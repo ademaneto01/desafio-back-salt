@@ -1,10 +1,9 @@
 <h1>Teste Ademar Envio Mensagens</h1>
 
-<h2>IMPORTANTE</h2>
+**IMPORTANTE**
 **Formato de data para envio de mensagem deve ser no seguinte formato: dia,mes,ano e horario. Exemplo: 04-08-2022 14:00**
 
-<br>
-**REQUISITOS**
+<h2>REQUISITOS</h2>
 <p>
 Criar uma estrutura de dados(mongo)
 
