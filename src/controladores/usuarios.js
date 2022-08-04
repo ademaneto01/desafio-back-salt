@@ -2,13 +2,13 @@ const knex = require('../conexao');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const segredoJWT = require('../segredoJWT');
-const { schemaregisterUser, schemaLoginUser, schemaCadastroContato } = require('../validacoes/schemaCadastroUsuario');
+const { schemaRegisterUser, schemaLoginUser, schemaCadastroContato } = require('../validacoes/schemaCadastroUsuario');
 
 const cadastroUsuario = async (req, res) => {
     const { nome, numero, senha } = req.body;
 
     try {
-        await schemaregisterUser.validate(req.body);
+        await schemaRegisterUser.validate(req.body);
 
         const validandoNumeroUsuario = await knex('usuarios').where({ numero }).first();
 

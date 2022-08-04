@@ -1,8 +1,3 @@
-// const mongoose = require('mongoose');
-
-// mongoose.connect('mongodb+srv://ademar:ademar1619@cluster0.i4kko.mongodb.net/db_salt');
-
-// let db = mongoose.connection;
 
 const knex = require('knex')({
     client: 'pg',

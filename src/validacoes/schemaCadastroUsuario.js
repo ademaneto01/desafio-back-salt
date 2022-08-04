@@ -1,6 +1,6 @@
 const yup = require('../validacoes/configuracoes')
 
-const schemaregisterUser = yup.object().shape({
+const schemaRegisterUser = yup.object().shape({
     nome: yup.string().required(),
     numero: yup.string().required(),
     senha: yup.string().required()
@@ -26,4 +26,4 @@ const schemaCadastroContato = yup.object().shape({
     numero: yup.string().required()
 })
 
-module.exports = { schemaregisterUser, schemaLoginUser, schemaEnviarMensagem, schemaListarMensagem, schemaCadastroContato };
+module.exports = { schemaRegisterUser, schemaLoginUser, schemaEnviarMensagem, schemaListarMensagem, schemaCadastroContato };

@@ -8,6 +8,13 @@ const rotas = Router();
 rotas.post('/usuario', usuarios.cadastroUsuario);
 rotas.post('/login', usuarios.loginUsuario);
 
+///////////////////// CRIACAO COM MONGO //////////////////////////
+
+rotas.get('/listaMongo', transacoes.listaMongo);
+rotas.post('/cadastroMongo', transacoes.criarUsuarioMongo);
+
+//////////////////////////////////////////////////////////////////
+
 rotas.use(validandoToken);
 
 rotas.post('/cadastro', usuarios.cadastroContato);

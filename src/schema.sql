@@ -15,7 +15,7 @@ CREATE TABLE usuarios (
 
 CREATE TABLE contatos (
 	id serial primary key,
-	cadastro_id integer NOT NULL references usuarios(id)
+	cadastro_id integer NOT NULL references usuarios(id),
  	nome varchar(100) NOT NULL,
   	numero integer NOT NULL UNIQUE,
 );
