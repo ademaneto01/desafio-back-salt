@@ -21,5 +21,9 @@ const schemaListarMensagem = yup.object().shape({
     data_mensagem_enviada: yup.string().required(),
 })
 
+const schemaCadastroContato = yup.object().shape({
+    nome: yup.string().required(),
+    numero: yup.string().required()
+})
 
-module.exports = { schemaregisterUser, schemaLoginUser, schemaEnviarMensagem, schemaListarMensagem };
+module.exports = { schemaregisterUser, schemaLoginUser, schemaEnviarMensagem, schemaListarMensagem, schemaCadastroContato };

@@ -2,7 +2,7 @@ const knex = require('../conexao');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const segredoJWT = require('../segredoJWT');
-const { schemaregisterUser, schemaLoginUser } = require('../validacoes/schemaCadastroUsuario');
+const { schemaregisterUser, schemaLoginUser, schemaCadastroContato } = require('../validacoes/schemaCadastroUsuario');
 
 const cadastroUsuario = async (req, res) => {
     const { nome, numero, senha } = req.body;
@@ -65,11 +65,37 @@ const loginUsuario = async (req, res) => {
     }
 }
 
+const cadastroContato = async (req, res) => {
+    const { user } = req;
+    const { nome, numero } = req.body;
 
+    try {
+        await schemaCadastroContato.validate(req.body);
 
+        const cadastro = await knex('contatos').where({ numero: numero }).first();
 
+        if (cadastro) {
+            return res.status(400).json("O telefone já existe");
+        }
+
+        const cadastroUsuario = await knex('contatos').insert({
+            cadastro_id: user.id,
+            nome,
+            numero
+        }).returning('*');
+
+        if (cadastroUsuario.length === 0) {
+            return res.status(400).json({ "mensagem": "Não foi possivel cadastrar o usuário." });
+        }
+
+        return res.status(201).json('Usuario cadastrado com sucesso!');
+    } catch (error) {
+        return res.status(400).json(error.message);
+    }
+}
 
 module.exports = {
     cadastroUsuario,
-    loginUsuario
+    loginUsuario,
+    cadastroContato
 }

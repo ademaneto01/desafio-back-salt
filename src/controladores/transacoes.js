@@ -1,19 +1,22 @@
 const knex = require('../conexao');
+const api = require('../servicos/api')
 const { schemaEnviarMensagem, schemaListarMensagem } = require('../validacoes/schemaCadastroUsuario');
 
 const enviarMensagem = async (req, res) => {
+    const { user } = req;
     const { numero, data_mensagem_enviada, mensagem } = req.body;
 
     try {
         await schemaEnviarMensagem.validate(req.body);
 
-        const numeroEnvio = await knex('usuarios').where({ numero }).first();
+        const numeroEnvio = await knex('contatos').where({ numero }).first();
         if (!numeroEnvio) {
             return res.status(400).json("telefone não cadastrado!");
         }
 
         const mensagemEnviada = await knex('envio_mensagem').insert({
-            contato_id: numeroEnvio.id,
+            contato_id: user.id,
+            envio_id: numeroEnvio.id,
             status_mensagem: false,
             data_mensagem_enviada,
             mensagem
@@ -23,11 +26,16 @@ const enviarMensagem = async (req, res) => {
             return res.status(400).json("Mensagem não enviada");
         }
 
-        await knex('envio_mensagem').where({ contato_id: numeroEnvio.id }).update({
+        await knex('envio_mensagem').where({ contato_id: user.id }).update({
             status_mensagem: true
-        })
+        }).returning('*')
 
-        return res.status(200).json('mensagem enviada com sucesso');
+        api.post('', {
+            "id": user.id,
+            "msg": mensagem
+        }).then(data => console.log(data)).catch(error => console.log(error))
+
+        return res.status(200).json("Mensagem enviada com sucesso");
     } catch (error) {
         return res.status(400).json(error.message);
     }

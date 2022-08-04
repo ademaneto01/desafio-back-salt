@@ -3,13 +3,14 @@ const usuarios = require('./controladores/usuarios');
 const transacoes = require('./controladores/transacoes');
 const validandoToken = require('./middleware/token');
 
-
 const rotas = Router();
 
 rotas.post('/usuario', usuarios.cadastroUsuario);
 rotas.post('/login', usuarios.loginUsuario);
 
 rotas.use(validandoToken);
+
+rotas.post('/cadastro', usuarios.cadastroContato);
 
 rotas.post('/envio', transacoes.enviarMensagem);
 
