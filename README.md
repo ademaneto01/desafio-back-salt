@@ -1,6 +1,6 @@
 <h1>Teste Ademar Envio Mensagens</h1>
 
-**IMPORTANTE**
+**IMPORTANTE:**
 **Formato de data para envio de mensagem deve ser no seguinte formato: dia,mes,ano e horario. Exemplo: 04-08-2022 14:00**
 
 <h2>REQUISITOS</h2>
@@ -33,7 +33,7 @@ Optei por entregar funcionando somente com banco de dados relacional, e deixei o
 OBS: no endpoint de envio de mensagem, tratei a data com uma pratica não indicada, porem tive alguns problemas de lib e não estava conseguindo converter para timestamp e de timestamp tranformar para a informação que eu necessitou tilizar. utilizando getDate() por exemplo. então obtei por realizar essa manobra somente para a aplicação não quebrar.
 </p>
 
-**conclusão**
+<h2>conclusão<h2>
 
 <p>
 Embora não finalizei o desafio conforme eu desejava, estou feliz com o resultado. Pois coheci o mongoDB e gostei bastante. Para algumas implementações ele facilita muito o trabalho, e diminui bastante linhas de códigos. ja que com as querys precisa realizar muita linha de codigo relacionando tabelas para conseguir obter algum resultado. 
